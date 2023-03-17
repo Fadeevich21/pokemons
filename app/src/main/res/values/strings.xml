@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">pokemons</string>
+    <string-array name="pokemons_names">
+        <item>Bulbasaur</item>
+        <item>Ivysaur</item>
+        <item>Venusaur</item>
+        <item>Charmander</item>
+        <item>Charmeleon</item>
+        <item>Charizard</item>
+    </string-array>
 </resources>
