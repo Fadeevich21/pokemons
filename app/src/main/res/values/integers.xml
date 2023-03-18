@@ -27,4 +27,53 @@
         <item>0005</item>
         <item>0006</item>
     </integer-array>
+
+    <integer-array name="pokemon_001_move_levels">
+        <item>1</item>
+        <item>1</item>
+        <item>7</item>
+        <item>13</item>
+        <item>20</item>
+        <item>27</item>
+        <item>34</item>
+        <item>41</item>
+        <item>48</item>
+    </integer-array>
+
+    <integer-array name="pokemon_001_move_powers">
+        <item>40</item>
+        <item>0</item>
+        <item>0</item>
+        <item>45</item>
+        <item>0</item>
+        <item>55</item>
+        <item>0</item>
+        <item>0</item>
+        <item>120</item>
+    </integer-array>
+
+    <integer-array name="pokemon_001_move_accuracies">
+        <item>100</item>
+        <item>100</item>
+        <item>90</item>
+        <item>100</item>
+        <item>75</item>
+        <item>95</item>
+        <item>0</item>
+        <item>75</item>
+        <item>100</item>
+    </integer-array>
+
+    <integer-array name="pokemon_001_move_pps">
+        <item>35</item>
+        <item>40</item>
+        <item>10</item>
+        <item>25</item>
+        <item>35</item>
+        <item>25</item>
+        <item>20</item>
+        <item>15</item>
+        <item>10</item>
+    </integer-array>
+
 </resources>

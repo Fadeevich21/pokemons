@@ -2,13 +2,14 @@ package com.example.pokemons;
 
 import androidx.annotation.NonNull;
 
-public class PokemonItemContent {
+public class PokemonInfo {
     private int imageId;
     private String name;
     private int hp;
     private int number;
+    PokemonMove[] moves;
 
-    public PokemonItemContent() {
+    public PokemonInfo() {
     }
 
     public int getImageId() {
@@ -42,5 +43,13 @@ public class PokemonItemContent {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public PokemonMove[] getMoves() {
+        return moves;
+    }
+
+    public void setMoves(PokemonMove[] moves) {
+        this.moves = moves;
     }
 }

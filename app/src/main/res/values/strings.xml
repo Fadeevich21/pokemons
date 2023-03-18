@@ -8,4 +8,41 @@
         <item>Charmeleon</item>
         <item>Charizard</item>
     </string-array>
+
+    <string-array name="pokemon_001_move_names">
+        <item>Tackle</item>
+        <item>Growl</item>
+        <item>Leech Seed</item>
+        <item>Vine Whip</item>
+        <item>Poison Powder</item>
+        <item>Razor Leaf</item>
+        <item>Growth</item>
+        <item>Sleep Powder</item>
+        <item>Solar Beam</item>
+    </string-array>
+
+    <string-array name="pokemon_001_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+        <item>Poison</item>
+        <item>Grass</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+    </string-array>
+
+    <string-array name="pokemon_001_move_details">
+        <item>A physical attack in which the user charges and slams into the target with its whole body.</item>
+        <item>The user growls in an endearing way, making opposing Pokemon less wary. This lowers their Attack stat.</item>
+        <item>A seed is planted on the target. It steals some HP from the target every turn.</item>
+        <item>The target is struck with slender, whiplike vines to inflict damage.</item>
+        <item>The user scatters a cloud of poisonous dust that poisons the target.</item>
+        <item>Sharp-edged leaves are launched to slash at the opposing Pokemon. Critical hits land more easily.</item>
+        <item>The user’s body grows all at once, raising the Attack and Sp. Atk stats.</item>
+        <item>The user scatters a big cloud of sleep-inducing dust around the target.</item>
+        <item>In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.</item>
+    </string-array>
+
 </resources>

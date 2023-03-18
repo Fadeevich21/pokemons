@@ -12,31 +12,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 public class PokemonsAdapter extends Adapter<com.example.pokemons.PokemonsAdapter.PokemonViewHolder> {
-    private final PokemonItemContent[] pokemonItemContents;
+    private final RecyclerViewInterface recyclerViewInterface;
+    private final PokemonInfo[] pokemonInfos;
 
-    public PokemonsAdapter(PokemonItemContent[] pokemonItemContents) {
-        this.pokemonItemContents = pokemonItemContents;
+    public PokemonsAdapter(PokemonInfo[] pokemonInfos, RecyclerViewInterface recyclerViewInterface) {
+        this.pokemonInfos = pokemonInfos;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     public int getItemCount() {
-        return this.pokemonItemContents.length;
+        return this.pokemonInfos.length;
     }
 
     @NonNull
     public com.example.pokemons.PokemonsAdapter.PokemonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        return new com.example.pokemons.PokemonsAdapter.PokemonViewHolder(layoutInflater.inflate(R.layout.item_content, parent, false));
+        return new com.example.pokemons.PokemonsAdapter.PokemonViewHolder(layoutInflater.inflate(R.layout.item_content, parent, false), recyclerViewInterface);
     }
 
     @SuppressLint({"DefaultLocale"})
     public void onBindViewHolder(@NonNull com.example.pokemons.PokemonsAdapter.PokemonViewHolder holder, int position) {
-        int imageId = this.pokemonItemContents[position].getImageId();
+        int imageId = this.pokemonInfos[position].getImageId();
         holder.image.setImageResource(imageId);
-        String name = this.pokemonItemContents[position].getName();
+        String name = this.pokemonInfos[position].getName();
         holder.name.setText(name);
-        int number = this.pokemonItemContents[position].getNumber();
+        int number = this.pokemonInfos[position].getNumber();
         holder.number.setText(String.format("№ %04d", number));
-        int hp = this.pokemonItemContents[position].getHp();
+        int hp = this.pokemonInfos[position].getHp();
         holder.hp.setText(String.format("%d HP", hp));
     }
 
@@ -46,9 +48,21 @@ public class PokemonsAdapter extends Adapter<com.example.pokemons.PokemonsAdapte
         TextView number;
         TextView hp;
 
-        public PokemonViewHolder(@NonNull View itemView) {
+        public PokemonViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             init(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int position  = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
         private void init(@NonNull View itemView) {
