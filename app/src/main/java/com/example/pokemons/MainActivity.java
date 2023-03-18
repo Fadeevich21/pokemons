@@ -46,22 +46,60 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     private PokemonMove[][] getPokemonMovies() {
-        int[] levels = getResources().getIntArray(R.array.pokemon_001_move_levels);
-        String[] names = getResources().getStringArray(R.array.pokemon_001_move_names);
-        int[] powers = getResources().getIntArray(R.array.pokemon_001_move_powers);
-        int[] accuracies = getResources().getIntArray(R.array.pokemon_001_move_accuracies);
-        int[] pps = getResources().getIntArray(R.array.pokemon_001_move_pps);
-        String[] types = getResources().getStringArray(R.array.pokemon_001_move_types);
-        String[] details = getResources().getStringArray(R.array.pokemon_001_move_details);
-        PokemonMove[] moves = new PokemonMove[levels.length];
-        for (int i = 0; i < moves.length; i++) {
-            moves[i] = new PokemonMove(levels[i], names[i], powers[i], accuracies[i], pps[i], types[i], details[i]);
+        int count = 6;
+        int[] levelsIds = new int[]{
+                R.array.pokemon_001_move_levels, R.array.pokemon_002_move_levels,
+                R.array.pokemon_003_move_levels, R.array.pokemon_004_move_levels,
+                R.array.pokemon_005_move_levels, R.array.pokemon_006_move_levels
+        };
+        int[] namesIds = new int[]{
+                R.array.pokemon_001_move_names, R.array.pokemon_002_move_names,
+                R.array.pokemon_003_move_names, R.array.pokemon_004_move_names,
+                R.array.pokemon_005_move_names, R.array.pokemon_006_move_names
+        };
+        int[] powersIds = new int[]{
+                R.array.pokemon_001_move_powers, R.array.pokemon_002_move_powers,
+                R.array.pokemon_003_move_powers, R.array.pokemon_004_move_powers,
+                R.array.pokemon_005_move_powers, R.array.pokemon_006_move_powers
+        };
+        int[] accuraciesIds = new int[]{
+                R.array.pokemon_001_move_accuracies, R.array.pokemon_002_move_accuracies,
+                R.array.pokemon_003_move_accuracies, R.array.pokemon_004_move_accuracies,
+                R.array.pokemon_005_move_accuracies, R.array.pokemon_006_move_accuracies
+        };
+        int[] ppsIds = new int[]{
+                R.array.pokemon_001_move_pps, R.array.pokemon_002_move_pps,
+                R.array.pokemon_003_move_pps, R.array.pokemon_004_move_pps,
+                R.array.pokemon_005_move_pps, R.array.pokemon_006_move_pps
+        };
+        int[] typesIds = new int[]{
+                R.array.pokemon_001_move_types, R.array.pokemon_002_move_types,
+                R.array.pokemon_003_move_types, R.array.pokemon_004_move_types,
+                R.array.pokemon_005_move_types, R.array.pokemon_006_move_types
+        };
+        int[] detailsIds = new int[]{
+                R.array.pokemon_001_move_details, R.array.pokemon_002_move_details,
+                R.array.pokemon_003_move_details, R.array.pokemon_004_move_details,
+                R.array.pokemon_005_move_details, R.array.pokemon_006_move_details
+        };
+
+        PokemonMove[][] pokemonMoves = new PokemonMove[count][];
+        for (int i = 0; i < count; i++) {
+            int[] levels = getResources().getIntArray(levelsIds[i]);
+            String[] names = getResources().getStringArray(namesIds[i]);
+            int[] powers = getResources().getIntArray(powersIds[i]);
+            int[] accuracies = getResources().getIntArray(accuraciesIds[i]);
+            int[] pps = getResources().getIntArray(ppsIds[i]);
+            String[] types = getResources().getStringArray(typesIds[i]);
+            String[] details = getResources().getStringArray(detailsIds[i]);
+
+            PokemonMove[] moves = new PokemonMove[levels.length];
+            for (int j = 0; j < moves.length; j++) {
+                moves[j] = new PokemonMove(levels[j], names[j], powers[j], accuracies[j], pps[j], types[j], details[j]);
+            }
+            pokemonMoves[i] = moves;
         }
-        PokemonMove[][] pokemonMoves = new PokemonMove[6][moves.length];
-        for (int i = 0; i < pokemonMoves.length; i++) {
-            pokemonMoves[i] = moves.clone();
-        }
-        
+
         return pokemonMoves;
     }
 
@@ -84,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("imageId", pokemonInfos[position].getImageId());
         intent.putExtra("hp", pokemonInfos[position].getHp());
         intent.putExtra("moves", pokemonInfos[position].getMoves());
-        
+
         startActivity(intent);
     }
 }

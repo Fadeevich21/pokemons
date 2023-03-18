@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">pokemons</string>
+
     <string-array name="pokemons_names">
         <item>Bulbasaur</item>
         <item>Ivysaur</item>
@@ -8,6 +9,7 @@
         <item>Charmeleon</item>
         <item>Charizard</item>
     </string-array>
+
 
     <string-array name="pokemon_001_move_names">
         <item>Tackle</item>
@@ -45,4 +47,179 @@
         <item>In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.</item>
     </string-array>
 
+
+    <string-array name="pokemon_002_move_names">
+        <item>Tackle</item>
+        <item>Growl</item>
+        <item>Leech Seed</item>
+        <item>Vine Whip</item>
+        <item>Poison Powder</item>
+        <item>Razor Leaf</item>
+        <item>Growth</item>
+        <item>Sleep Powder</item>
+        <item>Solar Beam</item>
+    </string-array>
+
+    <string-array name="pokemon_002_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+        <item>Poison</item>
+        <item>Grass</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+    </string-array>
+
+    <string-array name="pokemon_002_move_details">
+        <item>A physical attack in which the user charges and slams into the target with its whole body.</item>
+        <item>The user growls in an endearing way, making opposing Pokemon less wary. This lowers their Attack stat.</item>
+        <item>A seed is planted on the target. It steals some HP from the target every turn.</item>
+        <item>The target is struck with slender, whiplike vines to inflict damage.</item>
+        <item>The user scatters a cloud of poisonous dust that poisons the target.</item>
+        <item>Sharp-edged leaves are launched to slash at the opposing Pokemon. Critical hits land more easily.</item>
+        <item>The user’s body grows all at once, raising the Attack and Sp. Atk stats.</item>
+        <item>The user scatters a big cloud of sleep-inducing dust around the target.</item>
+        <item>In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.</item>
+    </string-array>
+
+
+    <string-array name="pokemon_003_move_names">
+        <item>Tackle</item>
+        <item>Growl</item>
+        <item>Leech Seed</item>
+        <item>Vine Whip</item>
+        <item>Poison Powder</item>
+        <item>Razor Leaf</item>
+        <item>Growth</item>
+        <item>Sleep Powder</item>
+        <item>Solar Beam</item>
+    </string-array>
+
+    <string-array name="pokemon_003_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+        <item>Poison</item>
+        <item>Grass</item>
+        <item>Normal</item>
+        <item>Grass</item>
+        <item>Grass</item>
+    </string-array>
+
+    <string-array name="pokemon_003_move_details">
+        <item>A physical attack in which the user charges and slams into the target with its whole body.</item>
+        <item>The user growls in an endearing way, making opposing Pokemon less wary. This lowers their Attack stat.</item>
+        <item>A seed is planted on the target. It steals some HP from the target every turn.</item>
+        <item>The target is struck with slender, whiplike vines to inflict damage.</item>
+        <item>The user scatters a cloud of poisonous dust that poisons the target.</item>
+        <item>Sharp-edged leaves are launched to slash at the opposing Pokemon. Critical hits land more easily.</item>
+        <item>The user’s body grows all at once, raising the Attack and Sp. Atk stats.</item>
+        <item>The user scatters a big cloud of sleep-inducing dust around the target.</item>
+        <item>In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.</item>
+    </string-array>
+
+
+    <string-array name="pokemon_004_move_names">
+        <item>Scratch</item>
+        <item>Growl</item>
+        <item>Ember</item>
+        <item>Leer</item>
+        <item>Rage</item>
+        <item>Slash</item>
+        <item>Flamethrower</item>
+        <item>Fire Spin</item>
+    </string-array>
+
+    <string-array name="pokemon_004_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Fire</item>
+    </string-array>
+
+    <string-array name="pokemon_004_move_details">
+        <item>Hard, pointed, sharp claws rake the target to inflict damage.</item>
+        <item>The user growls in an endearing way, making opposing Pokémon less wary. This lowers their Attack stat.</item>
+        <item>The target is attacked with small flames. This may also leave the target with a burn.</item>
+        <item>The user gives opposing Pokémon an intimidating leer that lowers the Defense stat.</item>
+        <item>As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle.</item>
+        <item>The target is attacked with a slash of claws or blades. Critical hits land more easily.</item>
+        <item>The target is scorched with an intense blast of fire. This may also leave the target with a burn.</item>
+        <item>The target becomes trapped within a fierce vortex of fire that rages for four to five turns.</item>
+    </string-array>
+
+
+    <string-array name="pokemon_005_move_names">
+        <item>Scratch</item>
+        <item>Growl</item>
+        <item>Ember</item>
+        <item>Leer</item>
+        <item>Rage</item>
+        <item>Slash</item>
+        <item>Flamethrower</item>
+        <item>Fire Spin</item>
+    </string-array>
+
+    <string-array name="pokemon_005_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Fire</item>
+    </string-array>
+
+    <string-array name="pokemon_005_move_details">
+        <item>Hard, pointed, sharp claws rake the target to inflict damage.</item>
+        <item>The user growls in an endearing way, making opposing Pokémon less wary. This lowers their Attack stat.</item>
+        <item>The target is attacked with small flames. This may also leave the target with a burn.</item>
+        <item>The user gives opposing Pokémon an intimidating leer that lowers the Defense stat.</item>
+        <item>As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle.</item>
+        <item>The target is attacked with a slash of claws or blades. Critical hits land more easily.</item>
+        <item>The target is scorched with an intense blast of fire. This may also leave the target with a burn.</item>
+        <item>The target becomes trapped within a fierce vortex of fire that rages for four to five turns.</item>
+    </string-array>
+
+
+    <string-array name="pokemon_006_move_names">
+        <item>Scratch</item>
+        <item>Growl</item>
+        <item>Ember</item>
+        <item>Leer</item>
+        <item>Rage</item>
+        <item>Slash</item>
+        <item>Flamethrower</item>
+        <item>Fire Spin</item>
+    </string-array>
+
+    <string-array name="pokemon_006_move_types">
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Fire</item>
+    </string-array>
+
+    <string-array name="pokemon_006_move_details">
+        <item>Hard, pointed, sharp claws rake the target to inflict damage.</item>
+        <item>The user growls in an endearing way, making opposing Pokémon less wary. This lowers their Attack stat.</item>
+        <item>The target is attacked with small flames. This may also leave the target with a burn.</item>
+        <item>The user gives opposing Pokémon an intimidating leer that lowers the Defense stat.</item>
+        <item>As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle.</item>
+        <item>The target is attacked with a slash of claws or blades. Critical hits land more easily.</item>
+        <item>The target is scorched with an intense blast of fire. This may also leave the target with a burn.</item>
+        <item>The target becomes trapped within a fierce vortex of fire that rages for four to five turns.</item>
+    </string-array>
 </resources>
