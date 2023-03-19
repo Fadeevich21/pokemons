@@ -1,4 +1,4 @@
-package com.example.pokemons;
+package com.example.pokemons.Pokemons;
 
 import android.graphics.Rect;
 import android.view.View;

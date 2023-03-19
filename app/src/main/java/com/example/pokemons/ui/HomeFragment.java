@@ -1,30 +1,62 @@
-package com.example.pokemons;
+package com.example.pokemons.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
-    PokemonInfo[] pokemonInfos;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
+import com.example.pokemons.Activities.DetailActivity;
+import com.example.pokemons.Pokemons.PokemonInfo;
+import com.example.pokemons.PokemonMove.PokemonMove;
+import com.example.pokemons.Pokemons.PokemonsAdapter;
+import com.example.pokemons.Pokemons.PokemonsDecorator;
+import com.example.pokemons.R;
+import com.example.pokemons.RecyclerViewInterface;
+
+
+public class HomeFragment extends Fragment implements RecyclerViewInterface {
+    private PokemonInfo[] pokemonInfos;
+    private RecyclerView recyclerView;
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+
+        intent.putExtra("name", pokemonInfos[position].getName());
+        intent.putExtra("imageId", pokemonInfos[position].getImageId());
+        intent.putExtra("hp", pokemonInfos[position].getHp());
+        intent.putExtra("moves", pokemonInfos[position].getMoves());
+        intent.putExtra("description", pokemonInfos[position].getDescription());
+
+        startActivity(intent);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         pokemonInfos = this.getPokemonItemContents();
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView recyclerView = this.findViewById(R.id.content);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = view.findViewById(R.id.content);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         PokemonsAdapter adapter = new PokemonsAdapter(pokemonInfos, this);
         recyclerView.setAdapter(adapter);
 
         PokemonsDecorator decoration = new PokemonsDecorator(15);
         recyclerView.addItemDecoration(decoration);
+
+        return view;
     }
+
 
     private PokemonInfo[] getPokemonItemContents() {
         int[] imageIds = this.getImageIds();
@@ -111,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     private int[] getImageIds() {
-        TypedArray typedArray = this.getResources().obtainTypedArray(R.array.pokemons_image_ids);
+        @SuppressLint("Recycle") TypedArray typedArray = this.getResources().obtainTypedArray(R.array.pokemons_image_ids);
         int count = typedArray.length();
         int[] imageIds = new int[count];
         for (int i = 0; i < count; ++i) {
@@ -119,18 +151,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         }
 
         return imageIds;
-    }
-
-    @Override
-    public void onItemClick(int position) {
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-
-        intent.putExtra("name", pokemonInfos[position].getName());
-        intent.putExtra("imageId", pokemonInfos[position].getImageId());
-        intent.putExtra("hp", pokemonInfos[position].getHp());
-        intent.putExtra("moves", pokemonInfos[position].getMoves());
-        intent.putExtra("description", pokemonInfos[position].getDescription());
-
-        startActivity(intent);
     }
 }

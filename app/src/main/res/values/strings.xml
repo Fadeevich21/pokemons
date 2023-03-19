@@ -230,4 +230,6 @@
         <item>The target is scorched with an intense blast of fire. This may also leave the target with a burn.</item>
         <item>The target becomes trapped within a fierce vortex of fire that rages for four to five turns.</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

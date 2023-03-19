@@ -1,5 +1,5 @@
 package com.example.pokemons;
 
-interface RecyclerViewInterface {
+public interface RecyclerViewInterface {
     void onItemClick(int position);
 }

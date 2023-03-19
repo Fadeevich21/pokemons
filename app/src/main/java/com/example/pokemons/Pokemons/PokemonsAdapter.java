@@ -1,4 +1,4 @@
-package com.example.pokemons;
+package com.example.pokemons.Pokemons;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-public class PokemonsAdapter extends Adapter<com.example.pokemons.PokemonsAdapter.PokemonViewHolder> {
+import com.example.pokemons.R;
+import com.example.pokemons.RecyclerViewInterface;
+
+public class PokemonsAdapter extends Adapter<PokemonsAdapter.PokemonViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
     private final PokemonInfo[] pokemonInfos;
 
@@ -25,13 +28,13 @@ public class PokemonsAdapter extends Adapter<com.example.pokemons.PokemonsAdapte
     }
 
     @NonNull
-    public com.example.pokemons.PokemonsAdapter.PokemonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PokemonsAdapter.PokemonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        return new com.example.pokemons.PokemonsAdapter.PokemonViewHolder(layoutInflater.inflate(R.layout.item_content, parent, false), recyclerViewInterface);
+        return new PokemonsAdapter.PokemonViewHolder(layoutInflater.inflate(R.layout.item_content, parent, false), recyclerViewInterface);
     }
 
     @SuppressLint({"DefaultLocale"})
-    public void onBindViewHolder(@NonNull com.example.pokemons.PokemonsAdapter.PokemonViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PokemonsAdapter.PokemonViewHolder holder, int position) {
         int imageId = this.pokemonInfos[position].getImageId();
         holder.image.setImageResource(imageId);
         String name = this.pokemonInfos[position].getName();

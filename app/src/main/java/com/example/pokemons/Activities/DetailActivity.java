@@ -1,14 +1,18 @@
-package com.example.pokemons;
+package com.example.pokemons.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.pokemons.PokemonMove.PokemonMove;
+import com.example.pokemons.PokemonMove.PokemonsMoveAdapter;
+import com.example.pokemons.PokemonMove.PokemonsMoveDecorator;
+import com.example.pokemons.R;
 
 public class DetailActivity extends AppCompatActivity {
     TextView nameView;
@@ -27,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         setupViews(intent);
         setAdapter(intent);
-        addItemDecoration();
+        addItemDecoration(10);
     }
 
     private void setupRecyclerView() {
@@ -77,8 +81,8 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void addItemDecoration() {
-        PokemonsMoveDecorator decoration = new PokemonsMoveDecorator(5);
+    private void addItemDecoration(int margin) {
+        PokemonsMoveDecorator decoration = new PokemonsMoveDecorator(margin);
         recyclerView.addItemDecoration(decoration);
     }
 }

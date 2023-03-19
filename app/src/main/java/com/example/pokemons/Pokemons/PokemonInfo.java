@@ -1,6 +1,8 @@
-package com.example.pokemons;
+package com.example.pokemons.Pokemons;
 
 import androidx.annotation.NonNull;
+
+import com.example.pokemons.PokemonMove.PokemonMove;
 
 public class PokemonInfo {
     private int imageId;

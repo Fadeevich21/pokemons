@@ -5,7 +5,7 @@
     style="@style/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".Activities.DetailActivity">
 
     <ImageView
         android:id="@+id/detail_image"
@@ -67,6 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_move" />
+        app:layout_constraintTop_toBottomOf="@id/detail_move"
+        android:layout_marginHorizontal="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.pokemons;
+package com.example.pokemons.PokemonMove;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
+
+import com.example.pokemons.R;
 
 public class PokemonsMoveAdapter extends Adapter<PokemonsMoveAdapter.PokemonMoveViewHolder> {
     private final PokemonMove[] pokemonMoves;
