@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private PokemonInfo[] getPokemonItemContents() {
         int[] imageIds = this.getImageIds();
         String[] names = this.getResources().getStringArray(R.array.pokemons_names);
+        String[] descriptions = this.getResources().getStringArray(R.array.pokemons_descriptions);
         int[] numbers = this.getResources().getIntArray(R.array.pokemons_numbers);
         int[] hps = this.getResources().getIntArray(R.array.pokemons_hps);
         PokemonMove[][] pokemonMoves = getPokemonMovies();
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         for (int i = 0; i < n; ++i) {
             pokemonInfos[i].setImageId(imageIds[i]);
             pokemonInfos[i].setName(names[i]);
+            pokemonInfos[i].setDescription(descriptions[i]);
             pokemonInfos[i].setNumber(numbers[i]);
             pokemonInfos[i].setHp(hps[i]);
             pokemonInfos[i].setMoves(pokemonMoves[i]);
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("imageId", pokemonInfos[position].getImageId());
         intent.putExtra("hp", pokemonInfos[position].getHp());
         intent.putExtra("moves", pokemonInfos[position].getMoves());
+        intent.putExtra("description", pokemonInfos[position].getDescription());
 
         startActivity(intent);
     }

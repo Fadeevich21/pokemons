@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 public class PokemonInfo {
     private int imageId;
     private String name;
+    private String description;
     private int hp;
     private int number;
     PokemonMove[] moves;
@@ -51,5 +52,13 @@ public class PokemonInfo {
 
     public void setMoves(PokemonMove[] moves) {
         this.moves = moves;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

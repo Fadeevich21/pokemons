@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
         style="@style/recyclerViewItem">
 
         <TextView
@@ -21,7 +20,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_level_metadata"
@@ -37,7 +36,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_level_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_name_metadata"
@@ -53,7 +52,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_name_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_power_metadata"
@@ -69,7 +68,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_power_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata"
@@ -85,7 +84,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_pp_metadata"
@@ -101,7 +100,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_pp_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@id/move_type_metadata"
@@ -117,7 +116,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_type_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
 
         <TextView
@@ -127,7 +126,7 @@
             android:text="1"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_level_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_name"
@@ -136,7 +135,7 @@
             android:text="Tackle"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_name_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_power"
@@ -155,7 +154,7 @@
             android:text="100%"
             app:layout_constraintStart_toEndOf="@id/move_accuracy_metadata"
             app:layout_constraintTop_toTopOf="@id/move_accuracy_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_movie_pp"
@@ -164,7 +163,7 @@
             android:text="35"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_pp_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_type"
@@ -173,7 +172,7 @@
             android:text="Normal"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_type_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_details"
@@ -183,7 +182,7 @@
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/move_details_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
