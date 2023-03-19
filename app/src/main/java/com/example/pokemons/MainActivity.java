@@ -15,10 +15,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         pokemonInfos = this.getPokemonItemContents();
-        PokemonsAdapter adapter = new PokemonsAdapter(pokemonInfos, this);
+
         RecyclerView recyclerView = this.findViewById(R.id.content);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        PokemonsAdapter adapter = new PokemonsAdapter(pokemonInfos, this);
         recyclerView.setAdapter(adapter);
+
+        PokemonsDecorator decoration = new PokemonsDecorator(15);
+        recyclerView.addItemDecoration(decoration);
     }
 
     private PokemonInfo[] getPokemonItemContents() {

@@ -34,10 +34,14 @@ public class DetailActivity extends AppCompatActivity {
         int imageId = intent.getIntExtra("imageId", R.drawable.ic_001);
         imageView.setImageResource(imageId);
 
-        PokemonMove[] pokemonMoves = (PokemonMove[]) intent.getSerializableExtra("moves");
-        PokemonsMoveAdapter adapter = new PokemonsMoveAdapter(pokemonMoves);
         RecyclerView recyclerView = this.findViewById(R.id.detail_moves);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        PokemonMove[] pokemonMoves = (PokemonMove[]) intent.getSerializableExtra("moves");
+        PokemonsMoveAdapter adapter = new PokemonsMoveAdapter(pokemonMoves);
         recyclerView.setAdapter(adapter);
+
+        PokemonsMoveDecorator decoration = new PokemonsMoveDecorator(5);
+        recyclerView.addItemDecoration(decoration);
     }
 }
