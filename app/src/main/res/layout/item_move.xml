@@ -6,10 +6,12 @@
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="10dp">
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        style="@style/recyclerViewItem">
 
         <TextView
             android:id="@+id/move_level_metadata"
@@ -18,7 +20,14 @@
             android:text="Level"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_level_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_name_metadata"
@@ -27,7 +36,14 @@
             android:text="Name"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_level_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_level_metadata"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_name_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_power_metadata"
@@ -36,7 +52,14 @@
             android:text="Power"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_name_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_name_metadata"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_power_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_accuracy_metadata"
@@ -45,7 +68,14 @@
             android:text="Accuracy"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_power_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_power_metadata"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_pp_metadata"
@@ -54,7 +84,14 @@
             android:text="PP"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_pp_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_type_metadata"
@@ -63,7 +100,14 @@
             android:text="Type"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_pp_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_pp_metadata"
+            android:paddingVertical="5dp"/>
+
+        <View
+            app:layout_constraintTop_toBottomOf="@id/move_type_metadata"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Divider"/>
 
         <TextView
             android:id="@+id/move_details_metadata"
@@ -72,7 +116,8 @@
             android:text="Details"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/move_type_metadata" />
+            app:layout_constraintTop_toBottomOf="@id/move_type_metadata"
+            android:paddingVertical="5dp"/>
 
 
         <TextView
@@ -81,7 +126,8 @@
             android:layout_height="wrap_content"
             android:text="1"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_level_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_level_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_move_name"
@@ -89,7 +135,8 @@
             android:layout_height="wrap_content"
             android:text="Tackle"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_name_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_name_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_move_power"
@@ -97,16 +144,18 @@
             android:layout_height="wrap_content"
             android:text="40"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_power_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_power_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_move_accuracy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:text="100%"
             app:layout_constraintStart_toEndOf="@id/move_accuracy_metadata"
-            app:layout_constraintTop_toTopOf="@id/move_accuracy_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_accuracy_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_movie_pp"
@@ -114,7 +163,8 @@
             android:layout_height="wrap_content"
             android:text="35"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_pp_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_pp_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_move_type"
@@ -122,15 +172,18 @@
             android:layout_height="wrap_content"
             android:text="Normal"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_type_metadata" />
+            app:layout_constraintTop_toTopOf="@id/move_type_metadata"
+            android:paddingVertical="5dp"/>
 
         <TextView
             android:id="@+id/item_move_details"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="details"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
-            app:layout_constraintTop_toTopOf="@id/move_details_metadata" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/move_details_metadata"
+            android:paddingVertical="5dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
