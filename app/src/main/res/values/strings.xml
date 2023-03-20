@@ -232,4 +232,27 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_name_example">name</string>
+    <string name="detail_hp_example">40 HP</string>
+    <string name="detail_description_example">description</string>
+    <string name="detail_moves">Moves</string>
+    <string name="fragment_settings_RBDark_text">Dark</string>
+    <string name="fragment_settings_RBLight_text">Light</string>
+    <string name="item_content_number_example">№ 0001</string>
+    <string name="item_content_name_text_example">Bulbasaur</string>
+    <string name="item_content_hp_text_example">45 HP</string>
+    <string name="item_move_level_text">Level</string>
+    <string name="item_move_name_text">Name</string>
+    <string name="item_move_power">Power</string>
+    <string name="item_move_accuracy">Accuracy</string>
+    <string name="item_move_pp">PP</string>
+    <string name="item_move_type">Type</string>
+    <string name="item_move_details">Details</string>
+    <string name="item_move_level_example">1</string>
+    <string name="item_move_name_example">Tackle</string>
+    <string name="item_move_power_example">40</string>
+    <string name="item_move_accuracy_example">100%</string>
+    <string name="item_move_pp_example">35</string>
+    <string name="item_move_type_example">Normal</string>
+    <string name="item_move_details_example">details</string>
 </resources>

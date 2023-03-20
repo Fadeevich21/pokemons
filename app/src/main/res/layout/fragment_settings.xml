@@ -10,13 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/change_theme"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/idRGgroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Сменить тему"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="@dimen/fragment_settings_RGgroup_margin_top"
+            android:orientation="vertical"
+            android:padding="@dimen/fragment_settings_RGgroup_padding">
+
+            <!--radio button for light theme-->
+            <RadioButton
+                android:id="@+id/idRBLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/fragment_settings_RB_margin"
+                android:padding="@dimen/fragment_settings_RB_padding"
+                android:text="@string/fragment_settings_RBLight_text" />
+
+            <!--radio button for dark theme-->
+            <RadioButton
+                android:id="@+id/idRBDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/fragment_settings_RB_margin"
+                android:layout_weight="1"
+                android:padding="@dimen/fragment_settings_RB_padding"
+                android:text="@string/fragment_settings_RBDark_text" />
+
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_move_content_padding_vertical">5dp</dimen>
+    <dimen name="detail_hp_margin_top">10dp</dimen>
+    <dimen name="full_width_with_content">0dp</dimen>
+    <dimen name="detail_description_margin_top">10dp</dimen>
+    <dimen name="detail_description_margin_horizontal">10dp</dimen>
+    <dimen name="detail_move_margin_top">15dp</dimen>
+    <dimen name="full_height_with_content">0dp</dimen>
+    <dimen name="detail_moves_margin_horizontal">10dp</dimen>
+    <dimen name="detail_moves_margin_top">10dp</dimen>
+    <dimen name="fragment_home_content_margin_horizontal">10dp</dimen>
+    <dimen name="fragment_settings_RGgroup_margin_top">30dp</dimen>
+    <dimen name="fragment_settings_RGgroup_padding">4dp</dimen>
+    <dimen name="fragment_settings_RB_margin">5dp</dimen>
+    <dimen name="fragment_settings_RB_padding">5dp</dimen>
+    <dimen name="item_content_card_corner_radius">20dp</dimen>
+    <dimen name="item_content_number_text_size">11sp</dimen>
+    <dimen name="item_content_number_margin_start">10dp</dimen>
+    <dimen name="item_content_name_margin_top">10dp</dimen>
+    <dimen name="item_content_name_text_size">16sp</dimen>
+    <dimen name="item_content_hp_margin_top">5dp</dimen>
+    <dimen name="item_move_corner_radius">10dp</dimen>
+    <dimen name="item_move_constraint_layout_padding_horizontal">10dp</dimen>
+    <dimen name="item_move_accuracy_margin_start">15dp</dimen>
+</resources>

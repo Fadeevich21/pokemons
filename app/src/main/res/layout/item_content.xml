@@ -1,63 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="@dimen/item_content_card_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/recyclerViewItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/recyclerViewItem">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/item_content_img"
+            style="@style/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/ic_001"
-            android:background="@color/color_03"
-            android:contentDescription="TODO" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/item_content_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_content_img"
+            android:layout_marginStart="@dimen/item_content_number_margin_start"
+            android:text="@string/item_content_number_example"
+            android:textSize="@dimen/item_content_number_text_size"
             app:layout_constraintStart_toStartOf="parent"
-
-            android:layout_marginStart="10dp"
-
-            android:text="№ 0001"
-            android:textSize="11sp"/>
+            app:layout_constraintTop_toBottomOf="@id/item_content_img" />
 
         <TextView
             android:id="@+id/item_content_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_content_number"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/item_content_name_margin_top"
+            android:text="@string/item_content_name_text_example"
+            android:textSize="@dimen/item_content_name_text_size"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-
-            android:layout_marginTop="10dp"
-
-            android:text="Bulbasaur"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_content_number" />
 
         <TextView
             android:id="@+id/item_content_hp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_content_name"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/item_content_hp_margin_top"
+            android:text="@string/item_content_hp_text_example"
             app:layout_constraintEnd_toEndOf="parent"
-
-            android:layout_marginTop="5dp"
-
-            android:text="45 HP"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_content_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

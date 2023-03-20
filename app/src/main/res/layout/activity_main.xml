@@ -9,13 +9,12 @@
 
     <FrameLayout
         android:id="@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/full_width_with_content"
+        android:layout_height="@dimen/full_height_with_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navigation_bar">
-
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

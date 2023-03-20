@@ -12,14 +12,26 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/color_08</item>
     </style>
 
+
     <style name="screen">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/color_05</item>
+    </style>
+
+    <style name="recyclerViewItem">
+        <item name="android:background">@color/color_07</item>
     </style>
 
     <style name="image">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/color_06</item>
     </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
 </resources>

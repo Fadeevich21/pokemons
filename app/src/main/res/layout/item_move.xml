@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="@dimen/item_move_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/item_move_constraint_layout_padding_horizontal"
         style="@style/recyclerViewItem">
 
         <TextView
             android:id="@+id/move_level_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Level"
+            android:text="@string/item_move_level_text"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
             android:id="@+id/move_name_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="@string/item_move_name_text"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_level_metadata"
@@ -48,7 +48,7 @@
             android:id="@+id/move_power_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Power"
+            android:text="@string/item_move_power"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_name_metadata"
@@ -64,7 +64,7 @@
             android:id="@+id/move_accuracy_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accuracy"
+            android:text="@string/item_move_accuracy"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_power_metadata"
@@ -80,7 +80,7 @@
             android:id="@+id/move_pp_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PP"
+            android:text="@string/item_move_pp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_accuracy_metadata"
@@ -96,7 +96,7 @@
             android:id="@+id/move_type_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type"
+            android:text="@string/item_move_type"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_pp_metadata"
@@ -112,7 +112,7 @@
             android:id="@+id/move_details_metadata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Details"
+            android:text="@string/item_move_details"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/move_type_metadata"
@@ -123,7 +123,7 @@
             android:id="@+id/item_move_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="@string/item_move_level_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_level_metadata"
             android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
@@ -132,7 +132,7 @@
             android:id="@+id/item_move_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tackle"
+            android:text="@string/item_move_name_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_name_metadata"
             android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
@@ -141,17 +141,17 @@
             android:id="@+id/item_move_power"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="40"
+            android:text="@string/item_move_power_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_power_metadata"
-            android:paddingVertical="5dp"/>
+            android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_accuracy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="100%"
+            android:layout_marginStart="@dimen/item_move_accuracy_margin_start"
+            android:text="@string/item_move_accuracy_example"
             app:layout_constraintStart_toEndOf="@id/move_accuracy_metadata"
             app:layout_constraintTop_toTopOf="@id/move_accuracy_metadata"
             android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
@@ -160,7 +160,7 @@
             android:id="@+id/item_movie_pp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="35"
+            android:text="@string/item_move_pp_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_pp_metadata"
             android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
@@ -169,16 +169,16 @@
             android:id="@+id/item_move_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Normal"
+            android:text="@string/item_move_type_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintTop_toTopOf="@id/move_type_metadata"
             android:paddingVertical="@dimen/item_move_content_padding_vertical"/>
 
         <TextView
             android:id="@+id/item_move_details"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/full_width_with_content"
             android:layout_height="wrap_content"
-            android:text="details"
+            android:text="@string/item_move_details_example"
             app:layout_constraintStart_toStartOf="@id/item_move_accuracy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/move_details_metadata"
