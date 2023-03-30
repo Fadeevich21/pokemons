@@ -1,6 +1,5 @@
 package com.example.pokemons.PokemonMove;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.pokemons.R;
 
-public class PokemonsMoveAdapter extends Adapter<PokemonsMoveAdapter.PokemonMoveViewHolder> {
+public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveViewHolder> {
     private final PokemonMove[] pokemonMoves;
 
-    public PokemonsMoveAdapter(PokemonMove[] pokemonMoves) {
+    public PokemonMoveAdapter(PokemonMove[] pokemonMoves) {
         this.pokemonMoves = pokemonMoves;
     }
 
@@ -29,16 +28,28 @@ public class PokemonsMoveAdapter extends Adapter<PokemonsMoveAdapter.PokemonMove
         return new PokemonMoveViewHolder(layoutInflater.inflate(R.layout.item_move, parent, false));
     }
 
-    @SuppressLint("SetTextI18n")
     public void onBindViewHolder(@NonNull PokemonMoveViewHolder holder, int position) {
         PokemonMove pokemonMove = this.pokemonMoves[position];
+        setData(holder, pokemonMove);
+    }
 
+    private void setData(@NonNull PokemonMoveViewHolder holder, PokemonMove pokemonMove) {
+        setName(holder, pokemonMove);
+        setPower(holder, pokemonMove);
+        setType(holder, pokemonMove);
+    }
+
+    private void setName(@NonNull PokemonMoveViewHolder holder, PokemonMove pokemonMove) {
         String name = pokemonMove.getName();
         holder.name.setText(name);
+    }
 
+    private void setPower(@NonNull PokemonMoveViewHolder holder, PokemonMove pokemonMove) {
         String power = pokemonMove.getPower();
         holder.power.setText(power);
+    }
 
+    private void setType(@NonNull PokemonMoveViewHolder holder, PokemonMove pokemonMove) {
         String type = pokemonMove.getType();
         holder.type.setText(type);
     }

@@ -1,4 +1,4 @@
-package com.example.pokemons.Pokemons;
+package com.example.pokemons.Pokemon;
 
 import androidx.annotation.NonNull;
 

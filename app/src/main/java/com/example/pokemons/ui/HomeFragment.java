@@ -6,20 +6,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pokemons.Activities.DetailActivity;
 import com.example.pokemons.PokemonMove.PokemonMove;
-import com.example.pokemons.Pokemons.PokemonInfo;
-import com.example.pokemons.Pokemons.PokemonsAdapter;
-import com.example.pokemons.Pokemons.PokemonsDecorator;
+import com.example.pokemons.Pokemon.PokemonInfo;
+import com.example.pokemons.Pokemon.PokemonAdapter;
+import com.example.pokemons.Pokemon.PokemonDecorator;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
 
@@ -39,10 +39,46 @@ import okhttp3.Response;
 
 
 public class HomeFragment extends Fragment implements RecyclerViewInterface {
-    private final String TAG = "flog";
-
     private PokemonInfo[] pokemonInfo;
     private RecyclerView recyclerView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        setupRecyclerView(view);
+
+        return view;
+    }
+
+    private void setupRecyclerView(View view) {
+        setLayoutManager(view);
+        setAdapter();
+        addItemDecoration();
+    }
+
+    private void setLayoutManager(View view) {
+        recyclerView = view.findViewById(R.id.content);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    }
+
+    private void setAdapter() {
+        if (pokemonInfo != null) {
+            PokemonAdapter adapter = new PokemonAdapter(pokemonInfo, HomeFragment.this);
+            recyclerView.setAdapter(adapter);
+        }
+    }
+
+    private void addItemDecoration() {
+        PokemonDecorator decorator = new PokemonDecorator(15);
+        recyclerView.addItemDecoration(decorator);
+    }
 
     @Override
     public void onItemClick(int position) {
@@ -56,77 +92,71 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         startActivity(intent);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = view.findViewById(R.id.content);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        new DownloadPokemonsInfo().execute("https://api.pokemontcg.io/v2/cards");
-
-        PokemonsDecorator decoration = new PokemonsDecorator(15);
-        recyclerView.addItemDecoration(decoration);
-
-        return view;
-    }
-    
     @SuppressLint("StaticFieldLeak")
-    private class DownloadPokemonsInfo extends AsyncTask<String, Void, PokemonInfo[]> {
+    private class DownloadPokemonInfo extends AsyncTask<String, Void, PokemonInfo[]> {
         protected PokemonInfo[] doInBackground(String... urls) {
-            Log.d(TAG, "doInBackground: start");
             try {
                 return run(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            Log.d(TAG, "doInBackground: stop");
             return null;
         }
 
         protected void onPostExecute(PokemonInfo[] result) {
-            PokemonsAdapter adapter = new PokemonsAdapter(result, HomeFragment.this);
-            recyclerView.setAdapter(adapter);
+            setAdapter();
         }
 
         private PokemonInfo[] run(String url) throws IOException {
-            Log.d(TAG, "run: start");
-            List<PokemonInfo> pokemonInfos = new ArrayList<>();
-
             Request request = new Request.Builder().url(url).build();
             OkHttpClient client = new OkHttpClient();
-            Log.d(TAG, "run: response start");
             Response response = client.newCall(request).execute();
-            Log.d(TAG, "run: response stop");
 
+            String responseBody = getResponseBody(response);
+            try {
+                JSONArray jsonQuestions = getJsonArrayData(responseBody);
+                List<PokemonInfo> pokemonInfos = getPokemonInfos(jsonQuestions);
+                preparePokemonInfo(pokemonInfos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return pokemonInfo;
+        }
+
+        @NonNull
+        private String getResponseBody(Response response) throws IOException {
             String responseBody = "";
             if (response.isSuccessful()) {
                 responseBody = Objects.requireNonNull(response.body()).string();
                 response.close();
             }
-            Log.d(TAG, "run: try start");
-            try {
-                JSONObject jsonResponse = new JSONObject(responseBody);
-                JSONArray jsonQuestions = jsonResponse.getJSONArray("data");
-                Log.d(TAG, "run: for start ");
-                for (int i = 0; i < jsonQuestions.length(); i++) {
-                    Log.d(TAG, "run: " + i);
-                    JSONObject jsonQuestion = jsonQuestions.getJSONObject(i);
-                    PokemonInfo pokemonInfo = parsePokemonInfo(jsonQuestion);
-                    pokemonInfos.add(pokemonInfo);
-                }
-                Log.d(TAG, "run: for end" + pokemonInfos);
 
-                pokemonInfo = pokemonInfos.toArray(new PokemonInfo[0]);
-                Arrays.sort(pokemonInfo);
-            } catch (JSONException e) {
-                Log.d(TAG, "run: catch");
-                e.printStackTrace();
+            return responseBody;
+        }
+
+        @NonNull
+        private JSONArray getJsonArrayData(String responseBody) throws JSONException {
+            JSONObject jsonResponse = new JSONObject(responseBody);
+            return jsonResponse.getJSONArray("data");
+        }
+
+        private List<PokemonInfo> getPokemonInfos(JSONArray jsonQuestions) throws JSONException {
+            List<PokemonInfo> pokemonInfos = new ArrayList<>();
+            for (int i = 0; i < jsonQuestions.length(); i++) {
+                JSONObject jsonQuestion = jsonQuestions.getJSONObject(i);
+                PokemonInfo pokemonInfo = parsePokemonInfo(jsonQuestion);
+                pokemonInfos.add(pokemonInfo);
             }
 
-            Log.d(TAG, "run: stop");
-            return pokemonInfo;
+            return pokemonInfos;
+        }
+
+        private void preparePokemonInfo(List<PokemonInfo> pokemonInfos) {
+            pokemonInfo = pokemonInfos.toArray(new PokemonInfo[0]);
+            Arrays.sort(pokemonInfo);
         }
 
         private PokemonInfo parsePokemonInfo(JSONObject jsonQuestion) throws JSONException {
@@ -163,9 +193,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             String name = getName(jsonObject);
             pokemonMove.setName(name);
 
-            String details = getDetails(jsonObject);
-            pokemonMove.setDetails(details);
-
             String power = getPower(jsonObject);
             pokemonMove.setPower(power);
 
@@ -181,6 +208,15 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         }
 
         @NonNull
+        private String getPower(JSONObject jsonObject) throws JSONException {
+            String power = jsonObject.getString("damage");
+            if (power.equals(""))
+                power = "-";
+
+            return power;
+        }
+
+        @NonNull
         private String getType(JSONObject jsonObject) throws JSONException {
             StringBuilder type = new StringBuilder("type");
             if (jsonObject.has("cost") && jsonObject.getJSONArray("cost").length() != 0) {
@@ -191,27 +227,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             }
 
             return type.toString();
-        }
-
-        @NonNull
-        private String getPower(JSONObject jsonObject) throws JSONException {
-            String power = jsonObject.getString("damage");
-            if (power.equals(""))
-                power = "-";
-
-            return power;
-        }
-
-        @NonNull
-        private String getDetails(JSONObject jsonObject) throws JSONException {
-            String details = "details";
-            if (jsonObject.has("text")) {
-                details = jsonObject.getString("text");
-                if (details.equals(""))
-                    details = "-";
-            }
-
-            return details;
         }
     }
 }

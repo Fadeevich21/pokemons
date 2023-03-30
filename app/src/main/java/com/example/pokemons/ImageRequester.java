@@ -13,12 +13,11 @@ import android.os.AsyncTask;
 import android.widget.ImageView;
 
 public class ImageRequester extends AsyncTask<String, Void, Bitmap> {
-
     @SuppressLint("StaticFieldLeak")
-    private ImageView view;
+    private ImageView imageView;
 
-    public void execute (String urlString, ImageView v) {
-        view = v;
+    public void execute(String urlString, ImageView imageView) {
+        this.imageView = imageView;
         this.execute(urlString);
     }
 
@@ -27,19 +26,20 @@ public class ImageRequester extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
-        view.setImageBitmap(result);
+        imageView.setImageBitmap(result);
     }
 
-    private Bitmap loadImageFromSite (String urlString) {
-        URL url = null;
+    private Bitmap loadImageFromSite(String urlString) {
+        URL url;
         try {
-            url= new URL(urlString);
+            url = new URL(urlString);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
         }
+
         try {
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true);
             conn.connect();
             InputStream inputstream = conn.getInputStream();

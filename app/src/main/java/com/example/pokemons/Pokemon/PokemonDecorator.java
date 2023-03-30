@@ -1,4 +1,4 @@
-package com.example.pokemons.PokemonMove;
+package com.example.pokemons.Pokemon;
 
 import android.graphics.Rect;
 import android.view.View;
@@ -6,10 +6,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PokemonsMoveDecorator extends RecyclerView.ItemDecoration {
+public class PokemonDecorator extends RecyclerView.ItemDecoration {
     private final int margin;
 
-    public PokemonsMoveDecorator(int margin) {
+    public PokemonDecorator(int margin) {
         this.margin = margin;
     }
 

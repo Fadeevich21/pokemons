@@ -39,17 +39,6 @@
         app:layout_constraintTop_toBottomOf="@id/detail_name" />
 
     <TextView
-        android:id="@+id/detail_description"
-        android:layout_width="@dimen/full_width_with_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/detail_description_margin_horizontal"
-        android:layout_marginTop="@dimen/detail_description_margin_top"
-        android:text="@string/detail_description_example"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_image" />
-
-    <TextView
         android:id="@+id/detail_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +46,7 @@
         android:text="@string/detail_moves"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_description" />
+        app:layout_constraintTop_toBottomOf="@id/detail_image" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_moves"

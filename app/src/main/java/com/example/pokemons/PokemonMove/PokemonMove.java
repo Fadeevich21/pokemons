@@ -6,13 +6,11 @@ public class PokemonMove implements Serializable {
     String name;
     String power;
     String type;
-    String details;
 
-    public PokemonMove(String name, String power, String type, String details) {
+    public PokemonMove(String name, String power, String type) {
         this.name = name;
         this.power = power;
         this.type = type;
-        this.details = details;
     }
 
     public PokemonMove() {
@@ -40,13 +38,5 @@ public class PokemonMove implements Serializable {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 }
