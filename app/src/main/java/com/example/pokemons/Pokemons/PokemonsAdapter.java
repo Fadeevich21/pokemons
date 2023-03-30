@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
+import com.example.pokemons.ImageRequester;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
 
@@ -24,6 +25,9 @@ public class PokemonsAdapter extends Adapter<PokemonsAdapter.PokemonViewHolder> 
     }
 
     public int getItemCount() {
+        if (this.pokemonInfos == null)
+            return 0;
+
         return this.pokemonInfos.length;
     }
 
@@ -35,8 +39,10 @@ public class PokemonsAdapter extends Adapter<PokemonsAdapter.PokemonViewHolder> 
 
     @SuppressLint({"DefaultLocale"})
     public void onBindViewHolder(@NonNull PokemonsAdapter.PokemonViewHolder holder, int position) {
-        int imageId = this.pokemonInfos[position].getImageId();
-        holder.image.setImageResource(imageId);
+        String imageUrl = this.pokemonInfos[position].getImageUrl();
+        ImageRequester requester = new ImageRequester();
+        requester.execute(imageUrl, holder.image);
+
         String name = this.pokemonInfos[position].getName();
         holder.name.setText(name);
         int number = this.pokemonInfos[position].getNumber();
@@ -59,7 +65,7 @@ public class PokemonsAdapter extends Adapter<PokemonsAdapter.PokemonViewHolder> 
                 @Override
                 public void onClick(View view) {
                     if (recyclerViewInterface != null) {
-                        int position  = getAdapterPosition();
+                        int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             recyclerViewInterface.onItemClick(position);
                         }

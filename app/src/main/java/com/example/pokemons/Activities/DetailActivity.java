@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pokemons.ImageRequester;
 import com.example.pokemons.PokemonMove.PokemonMove;
 import com.example.pokemons.PokemonMove.PokemonsMoveAdapter;
 import com.example.pokemons.PokemonMove.PokemonsMoveDecorator;
@@ -16,7 +17,6 @@ import com.example.pokemons.R;
 
 public class DetailActivity extends AppCompatActivity {
     TextView nameView;
-    TextView descriptionView;
     TextView hpView;
     ImageView imageView;
 
@@ -41,7 +41,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setupViews(Intent intent) {
         setupNameView(intent);
-        setupDescriptionView(intent);
         setupHpView(intent);
         setupImageView(intent);
 
@@ -49,8 +48,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setupImageView(Intent intent) {
-        int imageId = intent.getIntExtra("imageId", R.drawable.ic_001);
-        imageView.setImageResource(imageId);
+        String imageUrl = intent.getStringExtra("imageUrl");
+        ImageRequester requester = new ImageRequester();
+        requester.execute(imageUrl, imageView);
     }
 
     private void setupHpView(Intent intent) {
@@ -58,10 +58,6 @@ public class DetailActivity extends AppCompatActivity {
         hpView.setText(String.format("%d HP", hp));
     }
 
-    private void setupDescriptionView(Intent intent) {
-        String description = intent.getStringExtra("description");
-        descriptionView.setText(description);
-    }
 
     private void setupNameView(Intent intent) {
         String name = intent.getStringExtra("name");
@@ -72,7 +68,6 @@ public class DetailActivity extends AppCompatActivity {
         nameView = findViewById(R.id.detail_name);
         hpView = findViewById(R.id.detail_hp);
         imageView = findViewById(R.id.detail_image);
-        descriptionView = findViewById(R.id.detail_description);
     }
 
     private void setAdapter(Intent intent) {

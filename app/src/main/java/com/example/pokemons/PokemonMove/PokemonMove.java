@@ -3,33 +3,19 @@ package com.example.pokemons.PokemonMove;
 import java.io.Serializable;
 
 public class PokemonMove implements Serializable {
-    int level;
     String name;
-    int power;
-    int accuracy;
-    int pp;
+    String power;
     String type;
     String details;
 
-    public PokemonMove(int level, String name, int power, int accuracy, int pp, String type, String details) {
-        this.level = level;
+    public PokemonMove(String name, String power, String type, String details) {
         this.name = name;
         this.power = power;
-        this.accuracy = accuracy;
-        this.pp = pp;
         this.type = type;
         this.details = details;
     }
 
     public PokemonMove() {
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public String getName() {
@@ -40,28 +26,12 @@ public class PokemonMove implements Serializable {
         this.name = name;
     }
 
-    public int getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(int power) {
+    public void setPower(String power) {
         this.power = power;
-    }
-
-    public int getAccuracy() {
-        return accuracy;
-    }
-
-    public void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
-    }
-
-    public int getPp() {
-        return pp;
-    }
-
-    public void setPp(int pp) {
-        this.pp = pp;
     }
 
     public String getType() {

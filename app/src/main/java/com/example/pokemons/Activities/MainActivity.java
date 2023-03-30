@@ -18,8 +18,9 @@ import com.example.pokemons.ui.HomeFragment;
 import com.example.pokemons.ui.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity{
-
     ActivityMainBinding binding;
+    private final Fragment homeFragment = new HomeFragment();
+    private final Fragment settingFragment = new SettingsFragment();
 
     @SuppressLint("NonConstantResourceId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +29,16 @@ public class MainActivity extends AppCompatActivity{
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+        replaceFragment(homeFragment);
 
         binding.navigationBar.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(homeFragment);
                     break;
 
                 case R.id.navigation_settings:
-                    replaceFragment(new SettingsFragment());
+                    replaceFragment(settingFragment);
                     break;
             }
 

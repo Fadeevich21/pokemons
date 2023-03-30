@@ -33,32 +33,20 @@ public class PokemonsMoveAdapter extends Adapter<PokemonsMoveAdapter.PokemonMove
     public void onBindViewHolder(@NonNull PokemonMoveViewHolder holder, int position) {
         PokemonMove pokemonMove = this.pokemonMoves[position];
 
-        int level = pokemonMove.getLevel();
-        holder.level.setText(String.valueOf(level));
-
         String name = pokemonMove.getName();
         holder.name.setText(name);
 
-        int power = pokemonMove.getPower();
-        holder.power.setText(String.valueOf(power));
-
-        int accuracy = pokemonMove.getAccuracy();
-        holder.accuracy.setText(accuracy + "%");
+        String power = pokemonMove.getPower();
+        holder.power.setText(power);
 
         String type = pokemonMove.getType();
         holder.type.setText(type);
-
-        String details = pokemonMove.getDetails();
-        holder.details.setText(details);
     }
 
     static class PokemonMoveViewHolder extends RecyclerView.ViewHolder {
-        TextView level;
         TextView name;
         TextView power;
-        TextView accuracy;
         TextView type;
-        TextView details;
 
         public PokemonMoveViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,12 +54,9 @@ public class PokemonsMoveAdapter extends Adapter<PokemonsMoveAdapter.PokemonMove
         }
 
         private void init(@NonNull View itemView) {
-            level = itemView.findViewById(R.id.item_move_level);
             name = itemView.findViewById(R.id.item_move_name);
             power = itemView.findViewById(R.id.item_move_power);
-            accuracy = itemView.findViewById(R.id.item_move_accuracy);
             type = itemView.findViewById(R.id.item_move_type);
-            details = itemView.findViewById(R.id.item_move_details);
         }
     }
 }

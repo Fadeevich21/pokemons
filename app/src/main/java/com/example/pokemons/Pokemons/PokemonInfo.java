@@ -4,10 +4,9 @@ import androidx.annotation.NonNull;
 
 import com.example.pokemons.PokemonMove.PokemonMove;
 
-public class PokemonInfo {
-    private int imageId;
+public class PokemonInfo implements Comparable<PokemonInfo> {
+    private String imageUrl;
     private String name;
-    private String description;
     private int hp;
     private int number;
     PokemonMove[] moves;
@@ -15,13 +14,12 @@ public class PokemonInfo {
     public PokemonInfo() {
     }
 
-    public int getImageId() {
-        return this.imageId;
+    public String getImageUrl() {
+        return this.imageUrl;
     }
 
-    public void setImageId(int imageId) {
-        System.out.println("set image id");
-        this.imageId = imageId;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -56,11 +54,8 @@ public class PokemonInfo {
         this.moves = moves;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public int compareTo(PokemonInfo pokemonInfo) {
+        return this.number - pokemonInfo.number;
     }
 }
