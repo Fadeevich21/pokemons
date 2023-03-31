@@ -13,8 +13,8 @@
 
         <RelativeLayout
             android:id="@+id/relative_layout"
-            android:layout_width="245px"
-            android:layout_height="342px"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="@dimen/image_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

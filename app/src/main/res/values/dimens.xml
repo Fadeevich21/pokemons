@@ -23,4 +23,7 @@
     <dimen name="item_move_corner_radius">10dp</dimen>
     <dimen name="item_move_constraint_layout_padding_horizontal">10dp</dimen>
     <dimen name="item_move_accuracy_margin_start">15dp</dimen>
+
+    <dimen name="image_width">245px</dimen>
+    <dimen name="image_height">342px</dimen>
 </resources>

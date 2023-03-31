@@ -9,8 +9,8 @@
 
     <RelativeLayout
         android:id="@+id/activity_detail_relative_layout"
-        android:layout_width="245px"
-        android:layout_height="342px"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
