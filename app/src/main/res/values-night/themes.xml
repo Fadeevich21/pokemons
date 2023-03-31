@@ -15,6 +15,7 @@
         <item name="android:textColor">@color/color_04</item>
     </style>
 
+
     <style name="screen">
         <item name="android:background">@color/color_01</item>
     </style>

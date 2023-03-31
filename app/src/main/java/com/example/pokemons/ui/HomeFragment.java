@@ -43,16 +43,11 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     private RecyclerView recyclerView;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         setupRecyclerView(view);
+        new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
 
         return view;
     }
