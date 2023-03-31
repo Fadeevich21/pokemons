@@ -10,14 +10,24 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class ImageRequester extends AsyncTask<String, Void, Bitmap> {
     @SuppressLint("StaticFieldLeak")
     private ImageView imageView;
+    @SuppressLint("StaticFieldLeak")
+    private ProgressBar progressBar;
 
     public void execute(String urlString, ImageView imageView) {
         this.imageView = imageView;
+        this.execute(urlString);
+    }
+
+    public void execute(String urlString, ImageView imageView, ProgressBar progressBar) {
+        this.imageView = imageView;
+        this.progressBar = progressBar;
         this.execute(urlString);
     }
 
@@ -26,7 +36,11 @@ public class ImageRequester extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
         imageView.setImageBitmap(result);
+        imageView.setVisibility(View.VISIBLE);
     }
 
     private Bitmap loadImageFromSite(String urlString) {

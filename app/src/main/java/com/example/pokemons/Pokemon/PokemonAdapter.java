@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,8 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
     }
 
     public void onBindViewHolder(@NonNull PokemonAdapter.PokemonViewHolder holder, int position) {
+        holder.progressBar.setVisibility(View.VISIBLE);
+        holder.image.setVisibility(View.GONE);
         setData(holder, position);
     }
 
@@ -52,8 +55,8 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
 
     private void setImage(@NonNull PokemonViewHolder holder, int position) {
         String imageUrl = this.pokemonInfo[position].getImageUrl();
-        ImageRequester requester = new ImageRequester();
-        requester.execute(imageUrl, holder.image);
+        holder.requester =  new ImageRequester();
+        holder.requester.execute(imageUrl, holder.image, holder.progressBar);
     }
 
     private void setName(@NonNull PokemonViewHolder holder, int position) {
@@ -73,12 +76,19 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
         holder.hp.setText(String.format("%d HP", hp));
     }
 
+    @Override
+    public void onViewRecycled(@NonNull PokemonViewHolder holder) {
+        holder.requester.cancel(true);
+    }
 
     static class PokemonViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name;
         TextView number;
         TextView hp;
+        ProgressBar progressBar;
+        ImageRequester requester;
+
 
         public PokemonViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -91,6 +101,7 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
             name = itemView.findViewById(R.id.item_content_name);
             number = itemView.findViewById(R.id.item_content_number);
             hp = itemView.findViewById(R.id.item_content_hp);
+            progressBar = itemView.findViewById(R.id.progress_bar);
         }
 
         private void setOnClickListener(@NonNull View itemView,
