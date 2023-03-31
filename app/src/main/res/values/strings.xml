@@ -7,8 +7,8 @@
     <string name="detail_hp_example">40 HP</string>
     <string name="detail_description_example">description</string>
     <string name="detail_moves">Moves</string>
-    <string name="fragment_settings_RBDark_text">Dark</string>
-    <string name="fragment_settings_RBLight_text">Light</string>
+    <string name="fragment_settings_RBDark_text">Тёмная</string>
+    <string name="fragment_settings_RBLight_text">Светлая</string>
     <string name="item_content_number_example">№ 0001</string>
     <string name="item_content_name_text_example">Bulbasaur</string>
     <string name="item_content_hp_text_example">45 HP</string>
@@ -26,4 +26,5 @@
     <string name="item_move_pp_example">35</string>
     <string name="item_move_type_example">Normal</string>
     <string name="item_move_details_example">details</string>
+    <string name="choose_theme_text">Выберите тему:</string>
 </resources>
