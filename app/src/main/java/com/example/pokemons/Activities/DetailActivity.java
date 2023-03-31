@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.pokemons.ImageRequester;
@@ -20,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView nameView;
     TextView hpView;
     ImageView imageView;
+    ProgressBar progressBar;
 
     RecyclerView recyclerView;
 
@@ -39,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         nameView = findViewById(R.id.detail_name);
         hpView = findViewById(R.id.detail_hp);
         imageView = findViewById(R.id.detail_image);
+        progressBar = findViewById(R.id.activity_detail_progress_bar);
     }
 
     private void setupViews(Intent intent) {
@@ -63,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setupImageView(Intent intent) {
         String imageUrl = intent.getStringExtra("imageUrl");
         ImageRequester requester = new ImageRequester();
-        requester.execute(imageUrl, imageView);
+        requester.execute(imageUrl, imageView, progressBar);
     }
 
     private void setupRecyclerView() {

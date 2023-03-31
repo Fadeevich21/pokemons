@@ -13,12 +13,11 @@
 
         <RelativeLayout
             android:id="@+id/relative_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="245px"
+            android:layout_height="342px"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <ImageView
                 android:id="@+id/item_content_img"
