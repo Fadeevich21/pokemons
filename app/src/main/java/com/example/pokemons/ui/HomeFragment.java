@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.pokemons.Activities.DetailActivity;
 import com.example.pokemons.PokemonMove.PokemonMove;
@@ -29,8 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 import java.util.Objects;
 
 import okhttp3.OkHttpClient;
@@ -39,17 +39,59 @@ import okhttp3.Response;
 
 
 public class HomeFragment extends Fragment implements RecyclerViewInterface {
-    private PokemonInfo[] pokemonInfo;
+    private ArrayList<PokemonInfo> pokemonInfo;
     private RecyclerView recyclerView;
+    private PokemonAdapter adapter;
+    private SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        setupRecyclerView(view);
+        initViews(view);
+        setupViews(view);
         new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
 
         return view;
+    }
+
+    private void initViews(View view) {
+        recyclerView = view.findViewById(R.id.content);
+        searchView = view.findViewById(R.id.search);
+    }
+
+    private void setupViews(View view) {
+        setupRecyclerView(view);
+        setupSearchView();
+    }
+
+    private void setupSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+    }
+
+    private void filter(String text) {
+        ArrayList<PokemonInfo> filteredList = new ArrayList<>();
+        for (PokemonInfo item : pokemonInfo) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.filterList(filteredList);
+        }
     }
 
     private void setupRecyclerView(View view) {
@@ -59,13 +101,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     }
 
     private void setLayoutManager(View view) {
-        recyclerView = view.findViewById(R.id.content);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
 
     private void setAdapter() {
         if (pokemonInfo != null) {
-            PokemonAdapter adapter = new PokemonAdapter(pokemonInfo, HomeFragment.this);
+            adapter = new PokemonAdapter(pokemonInfo, HomeFragment.this);
             recyclerView.setAdapter(adapter);
         }
     }
@@ -79,20 +120,21 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     public void onItemClick(int position) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
 
-        intent.putExtra("name", pokemonInfo[position].getName());
-        intent.putExtra("imageUrl", pokemonInfo[position].getImageUrl());
-        intent.putExtra("hp", pokemonInfo[position].getHp());
-        intent.putExtra("moves", pokemonInfo[position].getMoves());
+        PokemonInfo pokemonInfoElement = this.pokemonInfo.get(position);
+        intent.putExtra("name", pokemonInfoElement.getName());
+        intent.putExtra("imageUrl", pokemonInfoElement.getImageUrl());
+        intent.putExtra("hp", pokemonInfoElement.getHp());
+        intent.putExtra("moves", pokemonInfoElement.getMoves());
 
         startActivity(intent);
     }
 
 
     @SuppressLint("StaticFieldLeak")
-    private class DownloadPokemonInfo extends AsyncTask<String, Void, PokemonInfo[]> {
-        protected PokemonInfo[] doInBackground(String... urls) {
+    private class DownloadPokemonInfo extends AsyncTask<String, Void, Void> {
+        protected Void doInBackground(String... urls) {
             try {
-                return run(urls[0]);
+                run(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,11 +142,11 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             return null;
         }
 
-        protected void onPostExecute(PokemonInfo[] result) {
+        protected void onPostExecute(Void result) {
             setAdapter();
         }
 
-        private PokemonInfo[] run(String url) throws IOException {
+        private void run(String url) throws IOException {
             Request request = new Request.Builder().url(url).build();
             OkHttpClient client = new OkHttpClient();
             Response response = client.newCall(request).execute();
@@ -112,13 +154,11 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             String responseBody = getResponseBody(response);
             try {
                 JSONArray jsonQuestions = getJsonArrayData(responseBody);
-                List<PokemonInfo> pokemonInfos = getPokemonInfos(jsonQuestions);
+                ArrayList<PokemonInfo> pokemonInfos = getPokemonInfos(jsonQuestions);
                 preparePokemonInfo(pokemonInfos);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            return pokemonInfo;
         }
 
         @NonNull
@@ -138,8 +178,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             return jsonResponse.getJSONArray("data");
         }
 
-        private List<PokemonInfo> getPokemonInfos(JSONArray jsonQuestions) throws JSONException {
-            List<PokemonInfo> pokemonInfos = new ArrayList<>();
+        private ArrayList<PokemonInfo> getPokemonInfos(JSONArray jsonQuestions) throws JSONException {
+            ArrayList<PokemonInfo> pokemonInfos = new ArrayList<>();
             for (int i = 0; i < jsonQuestions.length(); i++) {
                 JSONObject jsonQuestion = jsonQuestions.getJSONObject(i);
                 PokemonInfo pokemonInfo = parsePokemonInfo(jsonQuestion);
@@ -149,9 +189,9 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             return pokemonInfos;
         }
 
-        private void preparePokemonInfo(List<PokemonInfo> pokemonInfos) {
-            pokemonInfo = pokemonInfos.toArray(new PokemonInfo[0]);
-            Arrays.sort(pokemonInfo);
+        private void preparePokemonInfo(ArrayList<PokemonInfo> pokemonInfos) {
+            pokemonInfo = pokemonInfos;
+            Collections.sort(pokemonInfo);
         }
 
         private PokemonInfo parsePokemonInfo(JSONObject jsonQuestion) throws JSONException {
@@ -161,25 +201,25 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             pokemonInfo.setHp(jsonQuestion.getInt("hp"));
             pokemonInfo.setImageUrl(jsonQuestion.getJSONObject("images").getString("small"));
 
-            PokemonMove[] moves = parsePokemonMoves(jsonQuestion);
+            ArrayList<PokemonMove> moves = parsePokemonMoves(jsonQuestion);
             pokemonInfo.setMoves(moves);
 
             return pokemonInfo;
         }
 
-        private PokemonMove[] parsePokemonMoves(JSONObject jsonQuestion) throws JSONException {
+        private ArrayList<PokemonMove> parsePokemonMoves(JSONObject jsonQuestion) throws JSONException {
             if (!jsonQuestion.has("attacks"))
                 return null;
 
             JSONArray jsonQuestions = jsonQuestion.getJSONArray("attacks");
-            List<PokemonMove> pokemonMoves = new ArrayList<>();
+            ArrayList<PokemonMove> pokemonMoves = new ArrayList<>();
             for (int i = 0; i < jsonQuestions.length(); i++) {
                 jsonQuestion = jsonQuestions.getJSONObject(i);
                 PokemonMove pokemonMove = parsePokemonMove(jsonQuestion);
                 pokemonMoves.add(pokemonMove);
             }
 
-            return pokemonMoves.toArray(new PokemonMove[0]);
+            return pokemonMoves;
         }
 
         private PokemonMove parsePokemonMove(JSONObject jsonObject) throws JSONException {

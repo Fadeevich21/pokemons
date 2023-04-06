@@ -11,15 +11,17 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.pokemons.R;
 
-public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveViewHolder> {
-    private final PokemonMove[] pokemonMoves;
+import java.util.ArrayList;
 
-    public PokemonMoveAdapter(PokemonMove[] pokemonMoves) {
+public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveViewHolder> {
+    private final ArrayList<PokemonMove> pokemonMoves;
+
+    public PokemonMoveAdapter(ArrayList<PokemonMove> pokemonMoves) {
         this.pokemonMoves = pokemonMoves;
     }
 
     public int getItemCount() {
-        return this.pokemonMoves.length;
+        return this.pokemonMoves.size();
     }
 
     @NonNull
@@ -29,7 +31,7 @@ public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveVi
     }
 
     public void onBindViewHolder(@NonNull PokemonMoveViewHolder holder, int position) {
-        PokemonMove pokemonMove = this.pokemonMoves[position];
+        PokemonMove pokemonMove = this.pokemonMoves.get(position);
         setData(holder, pokemonMove);
     }
 

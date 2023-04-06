@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 
 import com.example.pokemons.PokemonMove.PokemonMove;
 
+import java.util.ArrayList;
+
 public class PokemonInfo implements Comparable<PokemonInfo> {
     private String imageUrl;
     private String name;
     private int hp;
     private int number;
-    PokemonMove[] moves;
+    ArrayList<PokemonMove> moves;
 
     public PokemonInfo() {
     }
@@ -46,11 +48,11 @@ public class PokemonInfo implements Comparable<PokemonInfo> {
         this.number = number;
     }
 
-    public PokemonMove[] getMoves() {
+    public ArrayList<PokemonMove> getMoves() {
         return moves;
     }
 
-    public void setMoves(PokemonMove[] moves) {
+    public void setMoves(ArrayList<PokemonMove> moves) {
         this.moves = moves;
     }
 

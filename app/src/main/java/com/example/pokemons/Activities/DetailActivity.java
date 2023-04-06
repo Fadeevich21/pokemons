@@ -17,6 +17,8 @@ import com.example.pokemons.PokemonMove.PokemonMoveAdapter;
 import com.example.pokemons.PokemonMove.PokemonMoveDecorator;
 import com.example.pokemons.R;
 
+import java.util.ArrayList;
+
 public class DetailActivity extends AppCompatActivity {
     TextView nameView;
     TextView hpView;
@@ -75,7 +77,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setAdapter(Intent intent) {
-        PokemonMove[] pokemonMoves = (PokemonMove[]) intent.getSerializableExtra("moves");
+        ArrayList<PokemonMove> pokemonMoves = (ArrayList<PokemonMove>) intent.getSerializableExtra("moves");
         PokemonMoveAdapter adapter = new PokemonMoveAdapter(pokemonMoves);
         recyclerView.setAdapter(adapter);
     }

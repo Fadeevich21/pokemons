@@ -16,20 +16,27 @@ import com.example.pokemons.ImageRequester;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
 
+import java.util.ArrayList;
+
 public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
-    private final PokemonInfo[] pokemonInfo;
+    private ArrayList<PokemonInfo> pokemonInfo;
 
-    public PokemonAdapter(PokemonInfo[] pokemonInfo, RecyclerViewInterface recyclerViewInterface) {
+    public PokemonAdapter(ArrayList<PokemonInfo> pokemonInfo, RecyclerViewInterface recyclerViewInterface) {
         this.pokemonInfo = pokemonInfo;
         this.recyclerViewInterface = recyclerViewInterface;
+    }
+
+    public void filterList(ArrayList<PokemonInfo> filterList) {
+        pokemonInfo = filterList;
+        notifyDataSetChanged();
     }
 
     public int getItemCount() {
         if (this.pokemonInfo == null)
             return 0;
 
-        return this.pokemonInfo.length;
+        return this.pokemonInfo.size();
     }
 
     @NonNull
@@ -54,25 +61,25 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
     }
 
     private void setImage(@NonNull PokemonViewHolder holder, int position) {
-        String imageUrl = this.pokemonInfo[position].getImageUrl();
+        String imageUrl = this.pokemonInfo.get(position).getImageUrl();
         holder.requester =  new ImageRequester();
         holder.requester.execute(imageUrl, holder.image, holder.progressBar);
     }
 
     private void setName(@NonNull PokemonViewHolder holder, int position) {
-        String name = this.pokemonInfo[position].getName();
+        String name = this.pokemonInfo.get(position).getName();
         holder.name.setText(name);
     }
 
     @SuppressLint("DefaultLocale")
     private void setNumber(@NonNull PokemonViewHolder holder, int position) {
-        int number = this.pokemonInfo[position].getNumber();
+        int number = this.pokemonInfo.get(position).getNumber();
         holder.number.setText(String.format("№ %04d", number));
     }
 
     @SuppressLint("DefaultLocale")
     private void setHp(@NonNull PokemonViewHolder holder, int position) {
-        int hp = this.pokemonInfo[position].getHp();
+        int hp = this.pokemonInfo.get(position).getHp();
         holder.hp.setText(String.format("%d HP", hp));
     }
 
