@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -39,10 +41,36 @@ import okhttp3.Response;
 
 
 public class HomeFragment extends Fragment implements RecyclerViewInterface {
-    private ArrayList<PokemonInfo> pokemonInfo;
+    private ArrayList<PokemonInfo> pokemonInfo = new ArrayList<>();
     private RecyclerView recyclerView;
     private PokemonAdapter adapter;
     private SearchView searchView;
+    private DownloadPokemonInfo downloadPokemonInfo;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        createAdapter();
+
+        if (savedInstanceState != null) {
+            pokemonInfo = (ArrayList<PokemonInfo>) savedInstanceState.getSerializable("pokemon_info");
+            downloadPokemonInfo = (DownloadPokemonInfo) savedInstanceState.getSerializable("download_pokemon_info");
+        } else {
+            downloadPokemonInfo = new DownloadPokemonInfo();
+        }
+
+        if (pokemonInfo.isEmpty() && new DownloadPokemonInfo().getStatus() != AsyncTask.Status.RUNNING) {
+            new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("pokemon_info", pokemonInfo);
+        outState.putSerializable("download_pokemon_info", (Serializable) downloadPokemonInfo);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +78,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initViews(view);
         setupViews(view);
-        new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
 
         return view;
     }
@@ -63,6 +90,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     private void setupViews(View view) {
         setupRecyclerView(view);
         setupSearchView();
+    }
+
+    private void setupRecyclerView(View view) {
+        setLayoutManager(view);
+        recyclerView.setAdapter(adapter);
+        addItemDecoration();
     }
 
     private void setupSearchView() {
@@ -81,6 +114,9 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     }
 
     private void filter(String text) {
+        if (pokemonInfo.isEmpty())
+            return;
+
         ArrayList<PokemonInfo> filteredList = new ArrayList<>();
         for (PokemonInfo item : pokemonInfo) {
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
@@ -94,21 +130,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         }
     }
 
-    private void setupRecyclerView(View view) {
-        setLayoutManager(view);
-        setAdapter();
-        addItemDecoration();
-    }
-
     private void setLayoutManager(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
 
-    private void setAdapter() {
-        if (pokemonInfo != null) {
-            adapter = new PokemonAdapter(pokemonInfo, HomeFragment.this);
-            recyclerView.setAdapter(adapter);
-        }
+    private void createAdapter() {
+        adapter = new PokemonAdapter(pokemonInfo, HomeFragment.this);
     }
 
     private void addItemDecoration() {
@@ -131,7 +158,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
 
 
     @SuppressLint("StaticFieldLeak")
-    private class DownloadPokemonInfo extends AsyncTask<String, Void, Void> {
+    private class DownloadPokemonInfo extends AsyncTask<String, Void, Void> implements Serializable {
         protected Void doInBackground(String... urls) {
             try {
                 run(urls[0]);
@@ -142,8 +169,9 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             return null;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         protected void onPostExecute(Void result) {
-            setAdapter();
+            adapter.notifyDataSetChanged();
         }
 
         private void run(String url) throws IOException {
@@ -159,7 +187,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+            }
 
         @NonNull
         private String getResponseBody(Response response) throws IOException {

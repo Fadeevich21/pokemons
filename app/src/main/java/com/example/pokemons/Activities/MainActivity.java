@@ -2,7 +2,6 @@ package com.example.pokemons.Activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,16 +16,22 @@ import com.example.pokemons.ui.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private final Fragment homeFragment = new HomeFragment();
-    private final Fragment settingFragment = new SettingsFragment();
-    private Fragment usingFragment = homeFragment;
+    private Fragment homeFragment;
+    private Fragment settingFragment;
+    private Fragment usingFragment;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null) {
+            homeFragment = getSupportFragmentManager().getFragment(savedInstanceState, "home_fragment");
+            settingFragment = getSupportFragmentManager().getFragment(savedInstanceState, "setting_fragment");
             usingFragment = getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
+        } else {
+            homeFragment = new HomeFragment();
+            settingFragment = new SettingsFragment();
+            usingFragment = homeFragment;
         }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -66,5 +71,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, "fragment", usingFragment);
+        getSupportFragmentManager().putFragment(outState, "home_fragment", homeFragment);
+        getSupportFragmentManager().putFragment(outState, "setting_fragment", settingFragment);
     }
 }
