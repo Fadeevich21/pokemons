@@ -26,5 +26,8 @@
 
     <dimen name="image_width" tools:ignore="PxUsage">245px</dimen>
     <dimen name="image_height" tools:ignore="PxUsage">342px</dimen>
+
+<!--    <dimen name="image_width" tools:ignore="PxUsage">319px</dimen>-->
+<!--    <dimen name="image_height" tools:ignore="PxUsage">444px</dimen>-->
     <dimen name="choose_theme_margin_top">30dp</dimen>
 </resources>
