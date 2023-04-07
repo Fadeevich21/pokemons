@@ -2,6 +2,7 @@ package com.example.pokemons.Activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,21 +17,30 @@ import com.example.pokemons.ui.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private Fragment homeFragment;
-    private Fragment settingFragment;
-    private Fragment usingFragment;
+    private Fragment homeFragment = null;
+    private Fragment settingsFragment = null;
+    private Fragment usingFragment = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
-        if (savedInstanceState != null) {
+        if (getSupportFragmentManager().isStateSaved()) {
             homeFragment = getSupportFragmentManager().getFragment(savedInstanceState, "home_fragment");
-            settingFragment = getSupportFragmentManager().getFragment(savedInstanceState, "setting_fragment");
             usingFragment = getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
-        } else {
+            settingsFragment = getSupportFragmentManager().getFragment(savedInstanceState, "settings_fragment");
+        }
+
+        Log.d("flog", "onCreate: " + homeFragment);
+        if (homeFragment == null) {
             homeFragment = new HomeFragment();
-            settingFragment = new SettingsFragment();
+        }
+
+        if (settingsFragment == null) {
+            settingsFragment = new SettingsFragment();
+        }
+
+        if (usingFragment == null) {
             usingFragment = homeFragment;
         }
 
@@ -58,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_settings:
-                    usingFragment = settingFragment;
+                    usingFragment = settingsFragment;
                     break;
             }
 
@@ -72,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, "fragment", usingFragment);
         getSupportFragmentManager().putFragment(outState, "home_fragment", homeFragment);
-        getSupportFragmentManager().putFragment(outState, "setting_fragment", settingFragment);
+        if (settingsFragment.isAdded()) {
+            getSupportFragmentManager().putFragment(outState, "settings_fragment", settingsFragment);
+        }
     }
 }

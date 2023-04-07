@@ -32,6 +32,10 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
         notifyDataSetChanged();
     }
 
+    public ArrayList<PokemonInfo> getPokemonInfo() {
+        return pokemonInfo;
+    }
+
     public int getItemCount() {
         if (this.pokemonInfo == null)
             return 0;
@@ -62,7 +66,7 @@ public class PokemonAdapter extends Adapter<PokemonAdapter.PokemonViewHolder> {
 
     private void setImage(@NonNull PokemonViewHolder holder, int position) {
         String imageUrl = this.pokemonInfo.get(position).getImageUrl();
-        holder.requester =  new ImageRequester();
+        holder.requester = new ImageRequester();
         holder.requester.execute(imageUrl, holder.image, holder.progressBar);
     }
 

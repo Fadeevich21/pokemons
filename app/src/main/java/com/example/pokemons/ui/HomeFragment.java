@@ -30,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -47,21 +46,27 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     private SearchView searchView;
     private DownloadPokemonInfo downloadPokemonInfo;
 
+    private boolean isParsed = false;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         createAdapter();
-
         if (savedInstanceState != null) {
             pokemonInfo = (ArrayList<PokemonInfo>) savedInstanceState.getSerializable("pokemon_info");
-            downloadPokemonInfo = (DownloadPokemonInfo) savedInstanceState.getSerializable("download_pokemon_info");
-        } else {
-            downloadPokemonInfo = new DownloadPokemonInfo();
+            isParsed = savedInstanceState.getBoolean("is_parsed");
         }
+        downloadPokemonInfo = new DownloadPokemonInfo();
+    }
 
-        if (pokemonInfo.isEmpty() && new DownloadPokemonInfo().getStatus() != AsyncTask.Status.RUNNING) {
-            new DownloadPokemonInfo().execute("https://api.pokemontcg.io/v2/cards");
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (!isParsed) {
+            isParsed = true;
+            downloadPokemonInfo.execute("https://api.pokemontcg.io/v2/cards");
         }
     }
 
@@ -69,7 +74,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("pokemon_info", pokemonInfo);
-        outState.putSerializable("download_pokemon_info", (Serializable) downloadPokemonInfo);
+        outState.putBoolean("is_parsed", isParsed);
     }
 
     @Override
@@ -147,7 +152,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     public void onItemClick(int position) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
 
-        PokemonInfo pokemonInfoElement = this.pokemonInfo.get(position);
+        PokemonInfo pokemonInfoElement = this.adapter.getPokemonInfo().get(position);
         intent.putExtra("name", pokemonInfoElement.getName());
         intent.putExtra("imageUrl", pokemonInfoElement.getImageUrl());
         intent.putExtra("hp", pokemonInfoElement.getHp());
@@ -158,10 +163,10 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
 
 
     @SuppressLint("StaticFieldLeak")
-    private class DownloadPokemonInfo extends AsyncTask<String, Void, Void> implements Serializable {
-        protected Void doInBackground(String... urls) {
+    private class DownloadPokemonInfo extends AsyncTask<String, Void, ArrayList<PokemonInfo>> {
+        protected ArrayList<PokemonInfo> doInBackground(String... urls) {
             try {
-                run(urls[0]);
+                return run(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -170,24 +175,29 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         }
 
         @SuppressLint("NotifyDataSetChanged")
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(ArrayList<PokemonInfo> result) {
+            pokemonInfo.clear();
+            pokemonInfo.addAll(result);
             adapter.notifyDataSetChanged();
         }
 
-        private void run(String url) throws IOException {
+        private ArrayList<PokemonInfo> run(String url) throws IOException {
             Request request = new Request.Builder().url(url).build();
             OkHttpClient client = new OkHttpClient();
             Response response = client.newCall(request).execute();
 
             String responseBody = getResponseBody(response);
+            ArrayList<PokemonInfo> pokemonInfos = new ArrayList<>();
             try {
                 JSONArray jsonQuestions = getJsonArrayData(responseBody);
-                ArrayList<PokemonInfo> pokemonInfos = getPokemonInfos(jsonQuestions);
+                pokemonInfos = getPokemonInfos(jsonQuestions);
                 preparePokemonInfo(pokemonInfos);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            }
+
+            return pokemonInfos;
+        }
 
         @NonNull
         private String getResponseBody(Response response) throws IOException {
@@ -218,8 +228,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         }
 
         private void preparePokemonInfo(ArrayList<PokemonInfo> pokemonInfos) {
-            pokemonInfo = pokemonInfos;
-            Collections.sort(pokemonInfo);
+            Collections.sort(pokemonInfos);
         }
 
         private PokemonInfo parsePokemonInfo(JSONObject jsonQuestion) throws JSONException {

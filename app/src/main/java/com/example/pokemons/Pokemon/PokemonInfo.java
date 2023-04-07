@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.example.pokemons.PokemonMove.PokemonMove;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PokemonInfo implements Comparable<PokemonInfo> {
+public class PokemonInfo implements Comparable<PokemonInfo>, Serializable {
     private String imageUrl;
     private String name;
     private int hp;
