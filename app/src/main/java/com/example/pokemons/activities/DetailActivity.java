@@ -1,4 +1,4 @@
-package com.example.pokemons.Activities;
+package com.example.pokemons.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.pokemons.ImageRequester;
-import com.example.pokemons.PokemonMove.PokemonMove;
-import com.example.pokemons.PokemonMove.PokemonMoveAdapter;
-import com.example.pokemons.PokemonMove.PokemonMoveDecorator;
+import com.example.pokemons.pokemon_move.PokemonMove;
+import com.example.pokemons.pokemon_move.PokemonMoveAdapter;
+import com.example.pokemons.pokemon_move.PokemonMoveDecorator;
 import com.example.pokemons.R;
 
 import java.util.ArrayList;

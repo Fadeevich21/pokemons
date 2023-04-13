@@ -1,19 +1,16 @@
-package com.example.pokemons.PokemonMove;
+package com.example.pokemons.pokemon_move;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.pokemons.R;
 
 import java.util.ArrayList;
 
-public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveViewHolder> {
+public class PokemonMoveAdapter extends Adapter<PokemonMoveViewHolder> {
     private final ArrayList<PokemonMove> pokemonMoves;
 
     public PokemonMoveAdapter(ArrayList<PokemonMove> pokemonMoves) {
@@ -54,22 +51,5 @@ public class PokemonMoveAdapter extends Adapter<PokemonMoveAdapter.PokemonMoveVi
     private void setType(@NonNull PokemonMoveViewHolder holder, PokemonMove pokemonMove) {
         String type = pokemonMove.getType();
         holder.type.setText(type);
-    }
-
-    static class PokemonMoveViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
-        TextView power;
-        TextView type;
-
-        public PokemonMoveViewHolder(@NonNull View itemView) {
-            super(itemView);
-            init(itemView);
-        }
-
-        private void init(@NonNull View itemView) {
-            name = itemView.findViewById(R.id.item_move_name);
-            power = itemView.findViewById(R.id.item_move_power);
-            type = itemView.findViewById(R.id.item_move_type);
-        }
     }
 }

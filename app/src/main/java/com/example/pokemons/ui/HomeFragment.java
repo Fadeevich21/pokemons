@@ -17,13 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.pokemons.Activities.DetailActivity;
-import com.example.pokemons.PokemonMove.PokemonMove;
-import com.example.pokemons.Pokemon.PokemonInfo;
-import com.example.pokemons.Pokemon.PokemonAdapter;
-import com.example.pokemons.Pokemon.PokemonDecorator;
+import com.example.pokemons.activities.DetailActivity;
+import com.example.pokemons.pokemon.PokemonInfo;
+import com.example.pokemons.pokemon.PokemonAdapter;
+import com.example.pokemons.pokemon.PokemonDecorator;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
+import com.example.pokemons.pokemon_move.PokemonMove;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -161,7 +161,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         startActivity(intent);
     }
 
-
     @SuppressLint("StaticFieldLeak")
     private class DownloadPokemonInfo extends AsyncTask<String, Void, ArrayList<PokemonInfo>> {
         protected ArrayList<PokemonInfo> doInBackground(String... urls) {
@@ -175,6 +174,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         }
 
         @SuppressLint("NotifyDataSetChanged")
+        @Override
         protected void onPostExecute(ArrayList<PokemonInfo> result) {
             pokemonInfo.clear();
             pokemonInfo.addAll(result);

@@ -5,7 +5,7 @@
     style="@style/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.DetailActivity">
+    tools:context=".activities.DetailActivity">
 
     <RelativeLayout
         android:id="@+id/activity_detail_relative_layout"

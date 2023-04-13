@@ -1,4 +1,4 @@
-package com.example.pokemons.PokemonMove;
+package com.example.pokemons.pokemon_move;
 
 import java.io.Serializable;
 

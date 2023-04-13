@@ -1,8 +1,8 @@
-package com.example.pokemons.Pokemon;
+package com.example.pokemons.pokemon;
 
 import androidx.annotation.NonNull;
 
-import com.example.pokemons.PokemonMove.PokemonMove;
+import com.example.pokemons.pokemon_move.PokemonMove;
 
 import java.io.Serializable;
 import java.util.ArrayList;
