@@ -1,4 +1,4 @@
-package com.example.pokemons.pokemon_move;
+package com.example.pokemons.pokemon_attack;
 
 import android.view.View;
 import android.widget.TextView;
@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pokemons.R;
 
-public class PokemonMoveViewHolder extends RecyclerView.ViewHolder {
+public class PokemonAttackViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     TextView power;
     TextView type;
 
-    public PokemonMoveViewHolder(@NonNull View itemView) {
+    public PokemonAttackViewHolder(@NonNull View itemView) {
         super(itemView);
         init(itemView);
     }

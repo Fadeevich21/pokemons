@@ -1,19 +1,19 @@
-package com.example.pokemons.pokemon_move;
+package com.example.pokemons.pokemon_attack;
 
 import java.io.Serializable;
 
-public class PokemonMove implements Serializable {
+public class PokemonAttack implements Serializable {
     String name;
     String power;
     String type;
 
-    public PokemonMove(String name, String power, String type) {
+    public PokemonAttack(String name, String power, String type) {
         this.name = name;
         this.power = power;
         this.type = type;
     }
 
-    public PokemonMove() {
+    public PokemonAttack() {
     }
 
     public String getName() {

@@ -8,9 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pokemons.ImageRequester;
+import com.example.pokemons.LoadImageFromDatabase;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
+import com.example.pokemons.download.ImageRequester;
 
 public class PokemonViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
@@ -19,6 +20,7 @@ public class PokemonViewHolder extends RecyclerView.ViewHolder {
     TextView hp;
     ProgressBar progressBar;
     ImageRequester requester;
+    LoadImageFromDatabase load;
 
     public PokemonViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
         super(itemView);
@@ -39,9 +41,8 @@ public class PokemonViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(view -> {
             if (recyclerViewInterface != null) {
                 int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION)
                     recyclerViewInterface.onItemClick(position);
-                }
             }
         });
     }

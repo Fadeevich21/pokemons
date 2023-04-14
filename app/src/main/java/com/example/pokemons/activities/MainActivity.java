@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
+//        NetworkConnect.setConnectStates(NetworkConnectStates.NOT_CONNECT);
+
         String fragmentTag = "home";
         if (savedInstanceState != null)
             fragmentTag = savedInstanceState.getString("active_fragment_tag");

@@ -8,33 +8,36 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.pokemons.ImageRequester;
+import com.example.pokemons.LoadImageFromDatabase;
 import com.example.pokemons.R;
 import com.example.pokemons.RecyclerViewInterface;
+import com.example.pokemons.database.entities.PokemonEntity;
+import com.example.pokemons.download.ImageRequester;
+import com.example.pokemons.network.NetworkConnect;
 
 import java.util.ArrayList;
 
 public class PokemonAdapter extends Adapter<PokemonViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
-    private ArrayList<PokemonInfo> pokemonInfo;
+    private ArrayList<PokemonEntity> pokemonEntities;
 
-    public PokemonAdapter(ArrayList<PokemonInfo> pokemonInfo, RecyclerViewInterface recyclerViewInterface) {
-        this.pokemonInfo = pokemonInfo;
+    public PokemonAdapter(ArrayList<PokemonEntity> pokemonInfo, RecyclerViewInterface recyclerViewInterface) {
+        this.pokemonEntities = pokemonInfo;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<PokemonInfo> filterList) {
-        pokemonInfo = filterList;
+    public void filterList(ArrayList<PokemonEntity> filterList) {
+        pokemonEntities = filterList;
         notifyDataSetChanged();
     }
 
-    public ArrayList<PokemonInfo> getPokemonInfo() {
-        return pokemonInfo;
+    public ArrayList<PokemonEntity> getPokemonEntities() {
+        return pokemonEntities;
     }
 
     public int getItemCount() {
-        return this.pokemonInfo.size();
+        return this.pokemonEntities.size();
     }
 
     @NonNull
@@ -59,30 +62,38 @@ public class PokemonAdapter extends Adapter<PokemonViewHolder> {
     }
 
     private void setImage(@NonNull PokemonViewHolder holder, int position) {
-        String imageUrl = this.pokemonInfo.get(position).getImageUrl();
-        holder.requester = new ImageRequester();
-        holder.requester.execute(imageUrl, holder.image, holder.progressBar);
+        PokemonEntity pokemonEntity = this.pokemonEntities.get(position);
+        if (NetworkConnect.isConnected()) {
+            holder.requester = new ImageRequester();
+            holder.requester.execute(pokemonEntity.imageUrl, pokemonEntity.pokemonId);
+        }
+            holder.load = new LoadImageFromDatabase(holder.image, holder.progressBar);
+            holder.load.execute(pokemonEntity.pokemonId);
     }
 
     private void setName(@NonNull PokemonViewHolder holder, int position) {
-        String name = this.pokemonInfo.get(position).getName();
+        String name = this.pokemonEntities.get(position).name;
         holder.name.setText(name);
     }
 
     @SuppressLint("DefaultLocale")
     private void setNumber(@NonNull PokemonViewHolder holder, int position) {
-        int number = this.pokemonInfo.get(position).getNumber();
+        int number = this.pokemonEntities.get(position).number;
         holder.number.setText(String.format("№ %04d", number));
     }
 
     @SuppressLint("DefaultLocale")
     private void setHp(@NonNull PokemonViewHolder holder, int position) {
-        int hp = this.pokemonInfo.get(position).getHp();
+        int hp = this.pokemonEntities.get(position).hp;
         holder.hp.setText(String.format("%d HP", hp));
     }
 
     @Override
     public void onViewRecycled(@NonNull PokemonViewHolder holder) {
-        holder.requester.cancel(true);
+        if (holder.load != null)
+            holder.load.cancel(true);
+
+        if (holder.requester != null)
+            holder.requester.cancel(true);
     }
 }

@@ -2,7 +2,7 @@ package com.example.pokemons.pokemon;
 
 import androidx.annotation.NonNull;
 
-import com.example.pokemons.pokemon_move.PokemonMove;
+import com.example.pokemons.pokemon_attack.PokemonAttack;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class PokemonInfo implements Comparable<PokemonInfo>, Serializable {
     private String name;
     private int hp;
     private int number;
-    ArrayList<PokemonMove> moves;
+    ArrayList<PokemonAttack> moves = new ArrayList<>();
 
     public PokemonInfo() {
     }
@@ -49,11 +49,11 @@ public class PokemonInfo implements Comparable<PokemonInfo>, Serializable {
         this.number = number;
     }
 
-    public ArrayList<PokemonMove> getMoves() {
+    public ArrayList<PokemonAttack> getMoves() {
         return moves;
     }
 
-    public void setMoves(ArrayList<PokemonMove> moves) {
+    public void setMoves(ArrayList<PokemonAttack> moves) {
         this.moves = moves;
     }
 
