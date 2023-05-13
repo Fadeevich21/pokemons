@@ -7,74 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailActivity">
 
-    <RelativeLayout
-        android:id="@+id/activity_detail_relative_layout"
-        android:layout_width="@dimen/image_width"
-        android:layout_height="@dimen/image_height"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/detail_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-        <ProgressBar
-            android:id="@+id/activity_detail_progress_bar"
-            style="?android:attr/progressBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/detail_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/detail_name_example"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_detail_relative_layout"
-        app:layout_constraintTop_toTopOf="@id/activity_detail_relative_layout"
-        app:layout_constraintBottom_toBottomOf="@id/activity_detail_relative_layout"/>
-
-
-    <TextView
-        android:id="@+id/detail_hp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/detail_hp_margin_top"
-        android:text="@string/detail_hp_example"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_detail_relative_layout"
-        app:layout_constraintTop_toBottomOf="@id/detail_name" />
-
-    <TextView
-        android:id="@+id/detail_move"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/detail_move_margin_top"
-        android:text="@string/detail_moves"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_detail_relative_layout" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/detail_moves"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/frame_layout_detail"
+        android:layout_width="@dimen/full_width_with_content"
         android:layout_height="@dimen/full_height_with_content"
-        android:layout_marginTop="@dimen/detail_moves_margin_top"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_move"
-        android:layout_marginHorizontal="@dimen/detail_moves_margin_horizontal"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pokemons.R;
 import com.example.pokemons.databinding.ActivityMainBinding;
+import com.example.pokemons.enums.NetworkConnectStates;
+import com.example.pokemons.network.NetworkConnect;
 import com.example.pokemons.ui.HomeFragment;
 import com.example.pokemons.ui.SettingsFragment;
 
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
 
-//        NetworkConnect.setConnectStates(NetworkConnectStates.NOT_CONNECT);
+        NetworkConnect.setConnectStates(NetworkConnectStates.NOT_CONNECT);
 
         String fragmentTag = "home";
         if (savedInstanceState != null)

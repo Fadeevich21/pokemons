@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -44,6 +45,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -153,7 +155,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     }
 
     private void setLayoutManager(View view) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
     }
 
     private void createAdapter() {
@@ -161,7 +164,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     }
 
     private void addItemDecoration() {
-        PokemonDecorator decorator = new PokemonDecorator(15);
+        PokemonDecorator decorator = new PokemonDecorator(30, 50);
         recyclerView.addItemDecoration(decorator);
     }
 
@@ -204,7 +207,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
                 e.printStackTrace();
             }
 
-            return null;
+            return new ArrayList<>();
         }
 
         @SuppressLint("NotifyDataSetChanged")
@@ -217,7 +220,10 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
 
         private ArrayList<PokemonEntity> run(String url) throws IOException {
             Request request = new Request.Builder().url(url).build();
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .build();
             Response response = client.newCall(request).execute();
 
             String responseBody = getResponseBody(response);
